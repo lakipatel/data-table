@@ -14,9 +14,7 @@ Lakipatel\DataTable\DataTableServiceProvider::class
 ```
 
 run this command to publish **php artisan vendor:publish**
-```
 
-```
 
 # CLI - Create Data Table Object
 run this commnad to generate data table **php artisan data-table:create**
