@@ -23,6 +23,10 @@ class DataTableServiceProvider extends ServiceProvider
 
         $this->loadTranslationsFrom(__DIR__.'/translations', 'data-table');
 
+        $this->publishes([
+            __DIR__.'/assets' => public_path('vendor/data-table'),
+        ], 'public');
+
         //config
         $this->publishes([
             __DIR__.'/config/data-table.php' => config_path('data-table.php')

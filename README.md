@@ -52,7 +52,7 @@ Add bellow line where you want to display data table under resources/views/users
 
 Add bellow lines in your layout file
 ```
-<script src="{{ asset('js/data-table.js') }}"></script>
+<script src="{{ asset('vendor/data-table/data-table.js') }}"></script>
 @stack('scripts')
 ```
 
