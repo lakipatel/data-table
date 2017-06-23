@@ -13,6 +13,10 @@ Maatwebsite\Excel\ExcelServiceProvider::class,
 Lakipatel\DataTable\DataTableServiceProvider::class
 ```
 
+run this command to publish **php artisan vendor:publish**
+```
+
+```
 
 # CLI - Create Data Table Object
 run this commnad to generate data table **php artisan data-table:create**
@@ -41,11 +45,16 @@ class UsersController
 ```
 
 
-Edit resources/views/users/index.blade.php in putt bellow line where you want to display data tabel.
-
+Add bellow line where you want to display data table under resources/views/users/index.blade.php.
+```
 {!! $dataTableHTML !!}
+```
 
-
+Add bellow lines in your layout file
+```
+<script src="{{ asset('js/data-table.js') }}"></script>
+@stack('scripts')
+```
 
 
 
