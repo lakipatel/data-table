@@ -8,6 +8,7 @@ composer require lakipatel/data-table
 Add bellow lines to config/app.php under providers
 
 Maatwebsite\Excel\ExcelServiceProvider::class,
+
 Lakipatel\DataTable\DataTableServiceProvider::class
 
 
