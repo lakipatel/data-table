@@ -186,10 +186,8 @@ abstract class DataTable
                             $dt = date('Y-m-d', $dt);
                             $query->whereRaw("DATE(".$this->getSqlColumn($key).") = DATE('{$dt}')");
                         }
-                    } else if( is_array($searchableColumns[$key]) ) {
-                        $query->where($this->getSqlColumn($key), '=', $val);
                     } else {
-                        $query->where($this->getSqlColumn($key), 'like', '%'.$val.'%');
+                        $query->where($this->getSqlColumn($key), '=', $val);
                     }
                 }
             }
