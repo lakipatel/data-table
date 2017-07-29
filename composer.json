@@ -1,6 +1,7 @@
 {
     "name": "lakipatel/data-table",
     "description": "Data Table will allow you to easily create Listing, Searching, Sorting and Download CSV.",
+    "keywords": ["laravel", "datatable", "data table"],
     "type": "library",
     "require": {
         "maatwebsite/excel": "^2.1"
