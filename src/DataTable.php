@@ -48,12 +48,14 @@ abstract class DataTable
 
     /**
      * Get HTML of Data Table
+     * @param array $params
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public final static function toHTML()
+    public final static function toHTML( array $params = [] )
     {
         $self = new static();
         $uniqueID = $self->uniqueID ?: 'unique_id_'.time();
-        $ajaxDataURI = route( 'dataTableJSON', encrypt(get_class($self)) );
+        $ajaxDataURI = route( 'dataTableJSON', [encrypt(get_class($self)), 'extra_params' => encrypt(json_encode($params))] );
         $columns = $self->columns();
         $sortableColumns = $self->sortableColumns();
         $searchableColumns = $self->searchableColumns();
@@ -80,7 +82,8 @@ abstract class DataTable
 
         request()->merge([
            'page' => ( !is_numeric(request()->get('page')) || request()->get('page') < 1 ) ? 1 : request()->get('page'),
-           'limit' => ( !is_numeric(request()->get('limit')) || request()->get('limit') < 1 ) ? 10 : request()->get('limit')
+           'limit' => ( !is_numeric(request()->get('limit')) || request()->get('limit') < 1 ) ? 10 : request()->get('limit'),
+           'extra_params' => json_decode(decrypt(request()->get('extra_params')), true)
         ]);
 
         $self = new static();

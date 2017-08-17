@@ -76,7 +76,7 @@
                 filters = '&'+queryData.filters;
             }
 
-            $.get($this.opt.ajaxURI + '?' + $.param(queryData)+filters, function(res) {
+            $.get($this.opt.ajaxURI + '&' + $.param(queryData)+filters, function(res) {
                 if(res.status == false) {
                     alert( res.message );
                 } else if(res.status == true) {
@@ -199,7 +199,7 @@
             if(queryData.action == 'filter') {
                 filters = '&'+queryData.filters;
             }
-            window.open($this.opt.ajaxURI + '?' + $.param(queryData)+filters+'&download=csv');
+            window.open($this.opt.ajaxURI + '&' + $.param(queryData)+filters+'&download=csv');
         };
 
         $this.jumpToPage = function(pageNo) {
