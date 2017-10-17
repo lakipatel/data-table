@@ -53,7 +53,7 @@ abstract class DataTable
      */
     public final static function toHTML( array $params = [] )
     {
-        $self = new static();
+        $self = new static($params);
         $uniqueID = $self->uniqueID ?: 'unique_id_'.time();
         $ajaxDataURI = route( 'dataTableJSON', [encrypt(get_class($self)), 'extra_params' => encrypt(json_encode($params))] );
         $columns = $self->columns();
