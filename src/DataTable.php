@@ -136,7 +136,7 @@ abstract class DataTable
                 }
             }
 
-            Excel::create('download_' . time(), function($excel) use ($returnData) {
+            Excel::create($this->uniqueID . time(), function($excel) use ($returnData) {
                 $excel->sheet('Sheet 1', function($sheet) use ($returnData) {
                     $sheet->setAllBorders('thin');
                     $sheet->fromArray($returnData, null, 'A1', false, false);
