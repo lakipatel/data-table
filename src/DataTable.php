@@ -53,7 +53,7 @@ abstract class DataTable
      */
     public final static function toHTML( array $params = [] )
     {
-        $self = new static();
+        $self = new static($params);
         $uniqueID = $self->uniqueID ?: 'unique_id_'.time();
         $ajaxDataURI = route( 'dataTableJSON', [encrypt(get_class($self)), 'extra_params' => encrypt(json_encode($params))] );
         $columns = $self->columns();
@@ -136,7 +136,7 @@ abstract class DataTable
                 }
             }
 
-            Excel::create('download_' . time(), function($excel) use ($returnData) {
+            Excel::create($this->uniqueID . time(), function($excel) use ($returnData) {
                 $excel->sheet('Sheet 1', function($sheet) use ($returnData) {
                     $sheet->setAllBorders('thin');
                     $sheet->fromArray($returnData, null, 'A1', false, false);
