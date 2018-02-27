@@ -147,7 +147,18 @@ abstract class DataTable
         } else {
             $data = $queryBuilder->paginate( request()->get('limit') )->toArray();
             if($this->debug == true) {
+                $raw = function ($sql, $bindings) {
+                    $flat = array_flatten($bindings);
+                    foreach ($flat as $binding) {
+                        $binded = $binding instanceof \DateTime ? $binding->format('Y-m-d H:i:s') : $binding;
+                        $binded = is_numeric($binded) ? $binded : "'{$binded}'";
+                        $sql = preg_replace('/\?/', $binded, $sql, 1);
+                    }
+                    return $sql;
+                };
                 $returnData['sql'] = $queryBuilder->toSql();
+                $returnData['bindings'] = $queryBuilder->getBindings();
+                $returnData['raw'] = $raw($queryBuilder->toSql(), $queryBuilder->getBindings());
             }
             $returnData['data'] = $this->processRows($data['data']);
             $returnData['total_pages'] = isset($data['last_page']) ? $data['last_page'] : 1;
