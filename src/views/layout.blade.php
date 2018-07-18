@@ -59,6 +59,8 @@
                                             </select>
                                         @elseif( $searchableColumns[$id] == 'date' )
                                             <input name="{{ $id }}" placeholder="mm/dd/yyyy" class="form-control date-picker" type="text" autocomplete="off" />
+                                        @elseif( $searchableColumns[$id] == 'daterange' )
+                                            <input name="{{ $id }}" placeholder="" class="form-control daterange-picker" type="text" autocomplete="off" />
                                         @else
                                             <input name="{{ $id }}" class="form-control" type="text" autocomplete="off" />
                                         @endif

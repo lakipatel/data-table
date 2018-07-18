@@ -200,6 +200,11 @@ abstract class DataTable
                             $dt = date('Y-m-d', $dt);
                             $query->whereRaw("DATE(".$this->getSqlColumn($key).") = DATE('{$dt}')");
                         }
+                    } else if($searchableColumns[$key] == 'daterange') {
+                        $range = explode(' - ', $val);
+                        $fromDate = date('Y-m-d 00:00:00', strtotime($range[0]));
+                        $toDate = date('Y-m-d 23:59:59', strtotime($range[1]));
+                        $query->whereBetween($this->getSqlColumn($key), array($fromDate, $toDate));
                     } else {
                         $query->where($this->getSqlColumn($key), '=', $val);
                     }
